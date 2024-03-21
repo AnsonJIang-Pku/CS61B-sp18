@@ -1,3 +1,4 @@
+
 public class LinkedListDeque<T> {
     /** Nested LNode class. */
     private class LNode {
@@ -35,7 +36,8 @@ public class LinkedListDeque<T> {
         size = 0;
     }
 
-    /** Returns #items in the deque. */
+    /** Returns #items
+     *  in the deque. */
     public int size() {
         return size;
     }
@@ -66,7 +68,7 @@ public class LinkedListDeque<T> {
         while (pt != sentinel) {
             System.out.print(pt.item + " "); //Cannot use ' '(single quote)
             pt = pt.next;
-        }
+        } //check style?
     }
     /** Removes and returns the item at the front. */
     public T removeFirst() {
@@ -83,7 +85,7 @@ public class LinkedListDeque<T> {
     public T removeLast() {
         if (size == 0) {
             return null;
-         }
+        }
         LNode temp = sentinel.prev;
         temp.prev.next = sentinel;
         sentinel.prev = temp.prev;
