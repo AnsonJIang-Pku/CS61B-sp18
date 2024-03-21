@@ -35,8 +35,8 @@ public class LinkedListDeque<T> {
         size = 0;
     }
 
-    /** Returns the number of items in the deque. */
-    public int size(){
+    /** Returns #items in the deque. */
+    public int size() {
         return size;
     }
     /** Returns true if deque is empty, false otherwise. */
@@ -60,7 +60,7 @@ public class LinkedListDeque<T> {
         temp.prev.next = temp;
         size += 1;
     }
-    /** Prints the items in the deque from first to last, separated by a space. */
+    /** Prints the items in the deque. */
     public void printDeque() {
         LNode pt = sentinel.next;
         while (pt != sentinel) {
@@ -68,7 +68,7 @@ public class LinkedListDeque<T> {
             pt = pt.next;
         }
     }
-    /** Removes and returns the item at the front of the deque. */
+    /** Removes and returns the item at the front. */
     public T removeFirst() {
         if (size == 0) {
             return null;
@@ -79,11 +79,11 @@ public class LinkedListDeque<T> {
         size -= 1;
         return temp.item;
     }
-    /** Removes and returns the item at the back of the deque.  */
+    /** Removes and returns the item at the back.  */
     public T removeLast() {
         if (size == 0) {
             return null;
-        }
+         }
         LNode temp = sentinel.prev;
         temp.prev.next = sentinel;
         sentinel.prev = temp.prev;
@@ -103,7 +103,8 @@ public class LinkedListDeque<T> {
         }
         return pt.item;
     }
-    /** Same as get, but uses recursion. */
+
+    /** Same as get(), but uses recursion. */
     public T getRecursive(int index) {
         if (index >= size) {
             return null;
