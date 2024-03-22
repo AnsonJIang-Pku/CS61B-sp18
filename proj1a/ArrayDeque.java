@@ -25,13 +25,16 @@ public class ArrayDeque<T> {
     }
     private void reduce() {
         //half the array when R < 0.25. only used in remove() methods.
-        T[] temp = (T []) new Object[items.length / 2];
-        for (int i = (nextFirst + 1) % items.length, j = 1; j <= size; i++, j++) {
-            temp[j] = items[i % items.length];
+        //notice not to reduce all the items.
+        if (items.length > 8) {
+            T[] temp = (T[]) new Object[items.length / 2];
+            for (int i = (nextFirst + 1) % items.length, j = 1; j <= size; i++, j++) {
+                temp[j] = items[i % items.length];
+            }
+            nextLast = size + 1;
+            nextFirst = 0;
+            items = temp;
         }
-        nextLast = size + 1;
-        nextFirst = 0;
-        items = temp;
     }
     /** Adds an item of type T to the front of the deque. */
     public void addFirst(T item) {
@@ -40,7 +43,7 @@ public class ArrayDeque<T> {
         }
         items[nextFirst] = item;
         //Notice: (-1)%8 == -1 != 7
-        nextFirst = (nextFirst + items.length- 1) % items.length;
+        nextFirst = (nextFirst + items.length - 1) % items.length;
         size += 1;
         //always records usage R
         R = (double) size / items.length;
