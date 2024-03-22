@@ -35,8 +35,6 @@ public class LinkedListDeque<T> {
         size = 0;
     }
 
-    /** Returns #items
-     *  in the deque. */
     public int size() {
         return size;
     }
@@ -61,15 +59,13 @@ public class LinkedListDeque<T> {
         temp.prev.next = temp;
         size += 1;
     }
-    /** Prints the items in the deque. */
     public void printDeque() {
         LNode pt = sentinel.next;
         while (pt != sentinel) {
             System.out.print(pt.item + " "); //Cannot use ' '(single quote)
             pt = pt.next;
-        } //check style?
+        }
     }
-    /** Removes and returns the item at the front. */
     public T removeFirst() {
         if (size == 0) {
             return null;
@@ -121,3 +117,4 @@ public class LinkedListDeque<T> {
     }
 
 }
+
