@@ -19,6 +19,7 @@ public class ArrayDeque<T> {
             temp[j] = items[i % items.length];
         }
         nextLast = size + 1;
+        nextFirst = 0;
         items = temp;
     }
     /** Adds an item of type T to the front of the deque. */
@@ -27,7 +28,8 @@ public class ArrayDeque<T> {
             resize(size * 2);
         }
         items[nextFirst] = item;
-        nextFirst = (nextFirst - 1) % items.length;
+        //Notice: (-1)%8 == -1 != 7
+        nextFirst = (nextFirst + items.length- 1) % items.length;
         size += 1;
     }
     public void addLast(T item) {
@@ -64,7 +66,7 @@ public class ArrayDeque<T> {
         if (isEmpty()) {
             return null;
         }
-        nextLast = (nextLast - 1) % items.length;
+        nextLast = (nextLast + items.length - 1) % items.length;
         size -= 1;
         return items[nextLast];
     }
