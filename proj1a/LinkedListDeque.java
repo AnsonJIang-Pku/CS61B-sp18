@@ -1,4 +1,3 @@
-
 public class LinkedListDeque<T> {
     /** Nested LNode class. */
     private class LNode {
