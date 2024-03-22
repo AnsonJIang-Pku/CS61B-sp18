@@ -14,7 +14,10 @@ public class ArrayDeque<T> {
     /** Resize method.*/
     private void resize(int capacity) {
         T[] temp = (T []) new Object[capacity];
-        System.arraycopy(items, (nextFirst+1) % items.length, temp, 1, size);
+        //System.arraycopy(items, (nextFirst + 1) % items.length, temp, 1, size);
+        for (int i = (nextFirst + 1) % items.length, j = 1; j <= size; i++, j++) {
+            temp[j] = items[i % items.length];
+        }
         nextLast = size + 1;
         items = temp;
     }
@@ -24,7 +27,7 @@ public class ArrayDeque<T> {
             resize(size * 2);
         }
         items[nextFirst] = item;
-        nextFirst = (nextFirst-1) % items.length;
+        nextFirst = (nextFirst - 1) % items.length;
         size += 1;
     }
     public void addLast(T item) {
@@ -32,7 +35,7 @@ public class ArrayDeque<T> {
             resize(size * 2);
         }
         items[nextLast] = item;
-        nextLast = (nextLast+1) % items.length;
+        nextLast = (nextLast + 1) % items.length;
         size += 1;
     }
     public boolean isEmpty() {
@@ -46,14 +49,14 @@ public class ArrayDeque<T> {
     }
     public void printDeque() {
         for (int i = 1; i <= size; i++) {
-            System.out.print(items[(nextFirst+i) % items.length] + " ");
+            System.out.print(items[(nextFirst + i) % items.length] + " ");
         }
     }
-    public T removeFirst(){
+    public T removeFirst() {
         if (isEmpty()) {
             return null;
         }
-        nextFirst = (nextFirst+1) % items.length;
+        nextFirst = (nextFirst + 1) % items.length;
         size -= 1;
         return items[nextFirst];
     }
@@ -61,7 +64,7 @@ public class ArrayDeque<T> {
         if (isEmpty()) {
             return null;
         }
-        nextLast = (nextLast-1) % items.length;
+        nextLast = (nextLast - 1) % items.length;
         size -= 1;
         return items[nextLast];
     }
