@@ -72,9 +72,9 @@ public class ArrayDeque<T> {
         if (isEmpty()) {
             return null;
         }
-        T temp = items[nextFirst];
         nextFirst = (nextFirst + 1) % items.length;
         size -= 1;
+        T temp = items[nextFirst];
         R = (double) size / items.length;
         if (R < 0.25) {
             reduce();
@@ -85,9 +85,9 @@ public class ArrayDeque<T> {
         if (isEmpty()) {
             return null;
         }
-        T temp = items[nextLast];
         nextLast = (nextLast + items.length - 1) % items.length;
         size -= 1;
+        T temp = items[nextLast];
         R = (double) size / items.length;
         if (R < 0.25) {
             reduce();

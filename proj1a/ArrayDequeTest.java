@@ -11,15 +11,13 @@ public class ArrayDequeTest {
         ad1.addLast(10);
         ad1.addLast(99);
         ad1.addLast(100);
-        ad1.removeLast();
-        ad1.removeLast();
-        ad1.removeLast();
-        ad1.removeLast();
-        ad1.removeLast();
-        ad1.removeLast();
-        ad1.removeLast();
-        ad1.removeLast();
-
+        ad1.addLast(100);
+        ad1.addLast(100);
+        ad1.addLast(100);
+        ad1.addLast(100);
+        ad1.addLast(100);
+        System.out.println(ad1.removeFirst());
+        System.out.println(ad1.removeLast());
 
     }
     public static void main(String[] args) {
