@@ -3,6 +3,7 @@ public class ArrayDeque<T> {
     private T[] items;
     private int nextFirst;
     private int nextLast;
+    private double R;
     /** With starting size 8.*/
     public ArrayDeque() {
         items = (T []) new Object[8];
@@ -11,10 +12,20 @@ public class ArrayDeque<T> {
         nextLast = 0;
     }
     //Methods.
-    /** Resize method.*/
+    /** 2 Resize methods.*/
     private void resize(int capacity) {
         T[] temp = (T []) new Object[capacity];
         //System.arraycopy(items, (nextFirst + 1) % items.length, temp, 1, size);
+        for (int i = (nextFirst + 1) % items.length, j = 1; j <= size; i++, j++) {
+            temp[j] = items[i % items.length];
+        }
+        nextLast = size + 1;
+        nextFirst = 0;
+        items = temp;
+    }
+    private void reduce() {
+        //half the array when R < 0.25. only used in remove() methods.
+        T[] temp = (T []) new Object[items.length / 2];
         for (int i = (nextFirst + 1) % items.length, j = 1; j <= size; i++, j++) {
             temp[j] = items[i % items.length];
         }
@@ -31,6 +42,8 @@ public class ArrayDeque<T> {
         //Notice: (-1)%8 == -1 != 7
         nextFirst = (nextFirst + items.length- 1) % items.length;
         size += 1;
+        //always records usage R
+        R = (double) size / items.length;
     }
     public void addLast(T item) {
         if (size == items.length) {
@@ -39,6 +52,7 @@ public class ArrayDeque<T> {
         items[nextLast] = item;
         nextLast = (nextLast + 1) % items.length;
         size += 1;
+        R = (double) size / items.length;
     }
     public boolean isEmpty() {
         if (size == 0) {
@@ -58,17 +72,27 @@ public class ArrayDeque<T> {
         if (isEmpty()) {
             return null;
         }
+        T temp = items[nextFirst];
         nextFirst = (nextFirst + 1) % items.length;
         size -= 1;
-        return items[nextFirst];
+        R = (double) size / items.length;
+        if (R < 0.25) {
+            reduce();
+        }
+        return temp;
     }
     public T removeLast() {
         if (isEmpty()) {
             return null;
         }
+        T temp = items[nextLast];
         nextLast = (nextLast + items.length - 1) % items.length;
         size -= 1;
-        return items[nextLast];
+        R = (double) size / items.length;
+        if (R < 0.25) {
+            reduce();
+        }
+        return temp;
     }
     public T get(int index) {
         if (index >= size) {
