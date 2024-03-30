@@ -9,7 +9,22 @@ public class Palindrome {
         return dWords;
     }
 
+    private boolean checkNonLetter(String word) {
+        for (int i = 0; i < word.length(); i += 1) {
+            char c = word.charAt(i);
+            if (c < 'A' || ('Z' < c && c < 'a') || c > 'z') {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
     public boolean isPalindrome(String word) {
+        // Check non-letters characters.
+        if (!checkNonLetter(word)) {
+            return false;
+        }
         Deque<Character> original = new LinkedListDeque<>();
         original = wordToDeque(word);
         String reversed = "";
