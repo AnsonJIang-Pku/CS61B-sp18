@@ -35,6 +35,6 @@ public class TestPalindrome {
         assertTrue(palindrome.isPalindrome("a", cc));
         assertFalse(palindrome.isPalindrome("aa", cc));
         assertFalse(palindrome.isPalindrome("aooa", cc));
-        assertFalse(palindrome.isPalindrome("%ab&", cc)); // corner case!!!
+        assertTrue(palindrome.isPalindrome("%ab&", cc)); // corner case!!!
     }
 }

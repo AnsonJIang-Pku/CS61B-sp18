@@ -6,7 +6,7 @@ public class ArrayDeque<T> {
     private double R;
     /** With starting size 8.*/
     public ArrayDeque() {
-        items = (T []) new Object[8];
+        items = (T[]) new Object[8];
         size = 0;
         nextFirst = 7;
         nextLast = 0;
@@ -14,7 +14,7 @@ public class ArrayDeque<T> {
     //Methods.
     /** 2 Resize methods.*/
     private void resize(int capacity) {
-        T[] temp = (T []) new Object[capacity];
+        T[] temp = (T[]) new Object[capacity];
         //System.arraycopy(items, (nextFirst + 1) % items.length, temp, 1, size);
         for (int i = (nextFirst + 1) % items.length, j = 1; j <= size; i++, j++) {
             temp[j] = items[i % items.length];
