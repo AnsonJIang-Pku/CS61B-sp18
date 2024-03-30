@@ -22,6 +22,7 @@ public class TestPalindrome {
         assertTrue(palindrome.isPalindrome("noon"));
         assertTrue(palindrome.isPalindrome("racecar"));
         assertTrue(palindrome.isPalindrome("AaA"));
+        assertTrue(palindrome.isPalindrome("cs61b16sc")); // corner case!!!
         assertFalse(palindrome.isPalindrome("Aaa"));
         assertFalse(palindrome.isPalindrome("horse"));
     }
@@ -34,5 +35,6 @@ public class TestPalindrome {
         assertTrue(palindrome.isPalindrome("a", cc));
         assertFalse(palindrome.isPalindrome("aa", cc));
         assertFalse(palindrome.isPalindrome("aooa", cc));
+        assertFalse(palindrome.isPalindrome("%ab&", cc)); // corner case!!!
     }
 }

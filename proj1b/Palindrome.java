@@ -12,7 +12,7 @@ public class Palindrome {
     private boolean checkNonLetter(String word) {
         for (int i = 0; i < word.length(); i += 1) {
             char c = word.charAt(i);
-            if (c < 'A' || ('Z' < c && c < 'a') || c > 'z') {
+            if (c < '0' || ('9' < c && c < 'A') || ('Z' < c && c < 'a') || c > 'z') {
                 return false;
             }
         }
@@ -35,6 +35,9 @@ public class Palindrome {
     }
 
     public boolean isPalindrome(String word, CharacterComparator cc) {
+        if (!checkNonLetter(word)) {
+            return false;
+        }
         Deque<Character> original = new LinkedListDeque<>();
         original = wordToDeque(word);
         for (int i = 0; i < word.length() / 2; i += 1) {
