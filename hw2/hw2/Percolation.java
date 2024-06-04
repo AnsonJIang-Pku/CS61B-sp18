@@ -9,7 +9,6 @@ public class Percolation {
     private int gridLength;
     private int nOpenSites = 0;
 
-
     // Constructor
     public Percolation(int N) {
         if (N <= 0) {
@@ -85,6 +84,9 @@ public class Percolation {
         }
         int nowN = xyTo1D(row, col);
         if (ds.connected(gridLength * gridLength, nowN)) {
+            if (row == gridLength - 1) {
+                ds.union(gridLength * gridLength + 1, nowN);
+            }
             return true;
         }
         return false;
@@ -97,6 +99,9 @@ public class Percolation {
 
     //Does the system percolate?
     public boolean percolates() {
-        return ds.connected(gridLength * gridLength, gridLength * gridLength + 1); //-1代表虚拟顶节点，-2代表虚拟底节点
+        return ds.connected(gridLength * gridLength, gridLength * gridLength + 1);
+    }
+    public static void main (String[] args) {
+        // use for unit testing (not required)
     }
 }
