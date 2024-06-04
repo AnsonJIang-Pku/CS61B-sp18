@@ -107,7 +107,7 @@ public class Percolation {
     public boolean percolates() {
         return ds1.connected(gridLength * gridLength, gridLength * gridLength + 1);
     }
-    public static void main (String[] args) {
+    public static void main(String[] args) {
         // use for unit testing (not required)
     }
 }
