@@ -21,7 +21,7 @@ public class RandomWorldDemo {
      * @param tiles
      */
     public static void fillWithRandomTiles(TETile[][] tiles) {
-        int height = tiles[0].length;
+        int height = tiles[0].length; //二维数组一个维度的长度
         int width = tiles.length;
         for (int x = 0; x < width; x += 1) {
             for (int y = 0; y < height; y += 1) {
